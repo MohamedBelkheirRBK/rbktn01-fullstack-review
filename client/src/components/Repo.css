@@ -1,0 +1,20 @@
+.repo-details {
+  border: 1px  solid #3e5472;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 10px;
+  background-color: #bcd2f0;
+  font-family: Helvetica;
+}
+
+.user-name, .repo-name{
+  margin-right: 30px;
+  font-weight: bold;
+
+}
+
+.repo-watchers, .repo-issues {
+  margin-left: 10px;
+  color: grey;
+  font-weight: lighter;
+}

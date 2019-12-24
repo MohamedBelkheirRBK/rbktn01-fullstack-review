@@ -4,6 +4,7 @@ mongoose.connect('mongodb://localhost/fetcher');
 let repoSchema = mongoose.Schema({
   name: String,
   url: String,
+  desc: String,
   watchers: Number,
   stars: Number,
   issues: Number,
@@ -20,6 +21,7 @@ let parseRepo = function(element) {
   return {
     name: element.name,
     url: element.html_url,
+    desc: element.description,
     watchers: element.watchers_count,
     stars: element.stargazers_count,
     issues: element.open_issues,

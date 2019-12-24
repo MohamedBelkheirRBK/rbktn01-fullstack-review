@@ -6,6 +6,7 @@ var { getReposByUsername } = require('../helpers/github.js');
 
 module.exports.getHandler = (req, res) => {
 
+  console.log("got a get request")
   repo.find().sort({watchers: -1}).limit(25).exec((err, data)=>{
     res.end(JSON.stringify(data))
   })
@@ -13,7 +14,7 @@ module.exports.getHandler = (req, res) => {
 
 
 module.exports.postHandler = (req, res) => {
-
+  console.log("got a post request", req.body)
   query = {'owner.name': req.body.username.toLowerCase()}
   repo.find(query, (err, data) => {
 
@@ -26,7 +27,7 @@ module.exports.postHandler = (req, res) => {
       }
 
      else
-      getReposByUsername(req.getParams.username, (err, response, body)=>{
+      getReposByUsername(req.body.username, (err, response, body)=>{
 
         if(err) {
           console.log(err)
@@ -37,6 +38,7 @@ module.exports.postHandler = (req, res) => {
         else {
           console.log("got from github")
           var parsedData = JSON.parse(body).items.map(parse)
+          // console.log(parsedData[0])
           save(parsedData)
           res.end(JSON.stringify(parsedData))
 
